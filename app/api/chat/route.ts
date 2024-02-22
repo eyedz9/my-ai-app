@@ -18,7 +18,7 @@ const functions: ChatCompletionCreateParams.Function[] = [
         location: {
           type: "string",
           description:
-            "The city ans state, e.g. New Delhi, Mumbai, and convert all name in standard and full name, for e.g if type NYC or nyc convert to New York and Delhi or delhi to New Delhi",
+            "The city and state, e.g. New Delhi, Mumbai, and convert all name in standard and full name, for e.g if type NYC or nyc convert to New York and Delhi or delhi to New Delhi",
         },
         format: {
           type: "string",
@@ -91,6 +91,9 @@ export async function POST(req: Request) {
 
                 // constructing the relevant 'assistant' and 'function' messages
                 const newMessages = createFunctionCallMessages(weatherData);
+                console.log({newMessages});
+                console.log({messages});
+
                 return openai.chat.completions.create({
                     messages: [...messages, ...newMessages],
                     stream: true,
