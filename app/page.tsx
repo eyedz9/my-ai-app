@@ -41,6 +41,7 @@ export default function Home() {
       return functionResponse;
     }
   };
+
   const { messages, input, handleInputChange, handleSubmit } = useChat(/* {
     experimental_onFunctionCall: functionCallHandler,
   } */);
@@ -49,8 +50,8 @@ export default function Home() {
       <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
         {messages.map(message => (
           <div key={message.id} className="whitespace-pre-wrap">
-            {message.role}
-            {' '}
+            {message.role.toLocaleUpperCase()}
+            {': '}
             {message.content}
             {
               message.role === 'function' && message.function_call && (
